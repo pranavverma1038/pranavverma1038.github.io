@@ -31,6 +31,28 @@ const Education = () => {
     'Meta - Front-End Development Certificate'
   ]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.6, -0.05, 0.01, 0.99]
+      }
+    }
+  }
+
   return (
     <section id="education" className="py-20 px-6">
       <div className="max-w-6xl mx-auto">
@@ -38,45 +60,105 @@ const Education = () => {
           className="text-3xl font-bold text-text mb-12 flex items-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6 }}
         >
           <span className="text-accent text-xl font-mono mr-4">05.</span>
           Education & Certifications
         </motion.h2>
         <div className="grid md:grid-cols-2 gap-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-secondary/50 rounded-lg p-6 border border-accent/20"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6 }}
+            whileHover={{ 
+              scale: 1.02,
+              y: -5,
+              boxShadow: '0 10px 30px rgba(100, 255, 218, 0.2)'
+            }}
+            className="bg-secondary/50 rounded-lg p-6 border border-accent/20 hover:border-accent/50 transition-all"
           >
-            <h3 className="text-xl font-bold text-accent mb-6">Education</h3>
-            <div className="space-y-6">
+            <motion.h3 
+              className="text-xl font-bold text-accent mb-6"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
+              Education
+            </motion.h3>
+            <motion.div 
+              className="space-y-6"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
               {education.map((edu, index) => (
-                <div key={index} className="border-l-2 border-accent pl-4">
-                  <h4 className="text-lg font-bold text-text">{edu.degree}</h4>
-                  <p className="text-accent">{edu.institution}</p>
+                <motion.div 
+                  key={index} 
+                  className="border-l-4 border-accent pl-4"
+                  variants={itemVariants}
+                  whileHover={{ x: 5, borderColor: '#64ffda' }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <motion.h4 
+                    className="text-lg font-bold text-text"
+                    whileHover={{ color: '#64ffda' }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {edu.degree}
+                  </motion.h4>
+                  <motion.p 
+                    className="text-accent"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {edu.institution}
+                  </motion.p>
                   <p className="text-textLight text-sm">{edu.period} • {edu.details}</p>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="bg-secondary/50 rounded-lg p-6 border border-accent/20"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            whileHover={{ 
+              scale: 1.02,
+              y: -5,
+              boxShadow: '0 10px 30px rgba(100, 255, 218, 0.2)'
+            }}
+            className="bg-secondary/50 rounded-lg p-6 border border-accent/20 hover:border-accent/50 transition-all"
           >
-            <h3 className="text-xl font-bold text-accent mb-6">Certifications</h3>
-            <ul className="space-y-3">
+            <motion.h3 
+              className="text-xl font-bold text-accent mb-6"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
+              Certifications
+            </motion.h3>
+            <motion.ul 
+              className="space-y-3"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
               {certifications.map((cert, index) => (
-                <li key={index} className="text-textLight flex items-start">
+                <motion.li 
+                  key={index} 
+                  className="text-textLight flex items-start"
+                  variants={itemVariants}
+                  whileHover={{ x: 5, color: '#64ffda' }}
+                  transition={{ duration: 0.2 }}
+                >
                   <span className="text-accent mr-3 mt-1">▹</span>
                   <span>{cert}</span>
-                </li>
+                </motion.li>
               ))}
-            </ul>
+            </motion.ul>
           </motion.div>
         </div>
       </div>

@@ -23,8 +23,9 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.6, -0.05, 0.01, 0.99] }}
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled ? 'bg-primary/90 backdrop-blur-sm shadow-lg' : 'bg-transparent'
       }`}
@@ -33,23 +34,42 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <motion.a
             href="#hero"
-            className="text-accent text-xl font-bold"
-            whileHover={{ scale: 1.05 }}
+            className="text-accent text-xl font-bold relative"
+            whileHover={{ scale: 1.1, rotate: [0, -5, 5, -5, 0] }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.3 }}
           >
-            PV
+            <motion.span
+              className="absolute inset-0 bg-accent/20 rounded"
+              whileHover={{ scale: 1.5, opacity: 0 }}
+              transition={{ duration: 0.6 }}
+            />
+            <span className="relative z-10">PV</span>
           </motion.a>
           <div className="hidden md:flex space-x-8">
             {navItems.map((item, index) => (
               <motion.a
                 key={item.name}
                 href={item.href}
-                className="text-textLight hover:text-accent transition-colors text-sm"
+                className="text-textLight hover:text-accent transition-colors text-sm relative"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -2 }}
+                transition={{ 
+                  delay: index * 0.1,
+                  duration: 0.5,
+                  ease: [0.6, -0.05, 0.01, 0.99]
+                }}
+                whileHover={{ 
+                  y: -3,
+                  scale: 1.05
+                }}
               >
-                {item.name}
+                <motion.span
+                  className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent"
+                  whileHover={{ width: '100%' }}
+                  transition={{ duration: 0.3 }}
+                />
+                <span className="relative z-10">{item.name}</span>
               </motion.a>
             ))}
           </div>

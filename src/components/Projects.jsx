@@ -44,7 +44,8 @@ const Projects = () => {
           className="text-3xl font-bold text-text mb-12 flex items-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6 }}
         >
           <span className="text-accent text-xl font-mono mr-4">03.</span>
           Some Things I've Built
@@ -53,17 +54,33 @@ const Projects = () => {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-secondary/50 rounded-lg overflow-hidden border border-accent/20 hover:border-accent/50 transition-all group"
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ 
+                duration: 0.6,
+                delay: index * 0.15,
+                ease: [0.6, -0.05, 0.01, 0.99]
+              }}
+              whileHover={{ 
+                y: -8,
+                scale: 1.02,
+                transition: { duration: 0.3 }
+              }}
+              className="bg-secondary/50 rounded-lg overflow-hidden border border-accent/20 hover:border-accent/50 transition-all group cursor-pointer"
             >
-              <div className="relative min-h-32 bg-gradient-to-br from-accent/20 to-secondary overflow-hidden flex items-center justify-center">
-                <img 
+              <motion.div 
+                className="relative min-h-32 bg-gradient-to-br from-accent/20 to-secondary overflow-hidden flex items-center justify-center"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.img 
                   src={project.image} 
                   alt={project.title}
                   className="w-full h-auto max-h-64 object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                  initial={{ scale: 1 }}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.4 }}
                   onError={(e) => {
                     e.target.style.display = 'none';
                     e.target.nextSibling.style.display = 'flex';
@@ -77,11 +94,23 @@ const Projects = () => {
                     <p className="text-textLight text-sm">{project.title}</p>
                   </div>
                 </div>
-              </div>
-              <div className="p-4">
-                <h3 className="text-lg font-bold text-text mb-2">{project.title}</h3>
+              </motion.div>
+              <motion.div 
+                className="p-4"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.15 + 0.3 }}
+              >
+                <motion.h3 
+                  className="text-lg font-bold text-text mb-2"
+                  whileHover={{ color: '#64ffda' }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {project.title}
+                </motion.h3>
                 <p className="text-textLight text-sm">{project.description}</p>
-              </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>
