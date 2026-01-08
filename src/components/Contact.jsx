@@ -5,7 +5,7 @@ const Contact = () => {
   const contactLinks = [
     {
       name: 'Email',
-      url: 'mailto:pranav2000verma@gmail.com',
+      url: 'https://mail.google.com/mail/?view=cm&fs=1&to=pranav1074verma@gmail.com',
       icon: '✉️'
     },
     {

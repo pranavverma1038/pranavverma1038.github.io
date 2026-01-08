@@ -6,7 +6,7 @@ const Experience = () => {
     {
       company: 'CoreAI',
       position: 'Software Developer',
-      period: 'Jul 2024 - Aug 2025',
+      period: 'Sep 2025 - Present',
       location: 'Remote',
       points: [
         'Collaborated with multiple clients to design and deliver white-labeled Android applications, including platforms such as Grata',
@@ -20,7 +20,7 @@ const Experience = () => {
     {
       company: 'SalesCode.ai',
       position: 'Software Developer',
-      period: 'Sep 2025 - Present',
+      period: 'Jul 2024 - Aug 2025',
       location: 'Remote',
       points: [
         'Designed and implemented a scalable discount scheme backend capable of processing and integrating over 1 million records daily',

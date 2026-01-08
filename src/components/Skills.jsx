@@ -17,7 +17,7 @@ const Skills = () => {
     },
     {
       title: 'Databases',
-      skills: ['MongoDB', 'SQL', 'NoSQL', 'Redis','Data Modeling', 'Query Optimization']
+      skills: ['SQL/NoSQL','PostgreSQL','MySQL', 'Redis','Data Modeling', 'Query Optimization']
     },
     {
       title: 'Tools & Cloud',
